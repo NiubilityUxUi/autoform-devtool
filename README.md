@@ -6,7 +6,7 @@
 > 本项目开发中,暂时只能本地开发模式运行，陆续会实现打包，上传到扩展中心。
 
 
-<p align="center"><img width="600px" src="http://owzieh3tb.bkt.clouddn.com/autoformdevtool.jpeg" alt="demo"></p>
+<p align="center"><img width="600px" src="http://owzieh3tb.bkt.clouddn.com/autoformdevtool.jpeg" alt="实例"></p>
 
 
 
