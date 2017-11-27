@@ -1,8 +1,8 @@
-// window.addEventListener('message', e => {
-//   if (e.source === window && e.data.type === 'init') {
-//     chrome.runtime.sendMessage(e.data)
-//   }
-// });
+window.addEventListener('message', e => {
+  if (e.source === window && e.data.type === 'init') {
+    chrome.runtime.sendMessage(e.data)
+  }
+});
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   window.postMessage({
