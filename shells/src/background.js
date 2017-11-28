@@ -59,9 +59,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
   chrome.browserAction.setPopup({
     tabId: sender.tab.id,
-    popup: request.type === 'init' ? 'popups/enabled.html' : 'popups/disabled.html'
+    popup: request.type === 'init'||request.type=== 'autoform_update_model' ? 'popups/enabled.html' : 'popups/disabled.html'
   });
-  console.log(request)
+
+
+  
   if (sender.tab) {
     var tabId = sender.tab.id;
     if (tabId in connections) {

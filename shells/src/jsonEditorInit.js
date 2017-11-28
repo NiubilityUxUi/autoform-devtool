@@ -7,7 +7,6 @@ let instance = null;
 
 
 export default function (e, win) {
-
     console.log(e)
     if (e.type === 'init') {
         if (instance) {
@@ -20,10 +19,10 @@ export default function (e, win) {
                 return h('div', {
                     attrs: {
                         id: 'app',
-                        style: "height:500px"
                     }
                 }, [
                     h(editor, {
+                        ref: 'editorRef',
                         props: {
                             jsonData: e.data,
                         },
@@ -39,9 +38,17 @@ export default function (e, win) {
                     })
                 ]);
             },
+            methods: {
+                updateModel(data) {
+                    this.$refs.editorRef.updateModel(data);
+                }
+            },
             component: {
                 editor
             }
         });
+
+    } else if (e.type === 'autoform_update_model') {
+        instance.updateModel(e.data.model);
     }
 }
