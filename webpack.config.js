@@ -55,34 +55,39 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('css-loader')
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
       },
       {
         test: /\.(gif|jpe?g|png|svg)$/i,
         use: [{
-            loader: 'url-loader',
-            query: {
-                limit: 10000
-            }
+          loader: 'url-loader',
+          query: {
+            limit: 50000
+          }
         }]
-    },
+      },
     ]
   },
   performance: {
     hints: false
   },
   plugins: [
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'commons',
-    //   filename: '[name].[chunkhash].js',
-    // }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'commons',
+      filename: '[name].[chunkhash].js',
+      chunks: ['devtools']
+      // minChunks: 2
+    }),
     new HtmlWebpackPlugin({
       filename: '../devtools.html',
       template: './devtools.html',
-      chunks: ['devtools']
+      chunks: ['commons', 'devtools']
     }),
     new ExtractTextPlugin({
-      filename: '[name].[contenthash:16].css',
+      filename: '[name].[hash].css',
       allChunks: true
     }),
 
@@ -91,12 +96,12 @@ module.exports = {
     '#inline-source-map' : false
 }
 
-if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins = [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    })
-  ]
-}
+// if (process.env.NODE_ENV === 'production') {
+//   module.exports.plugins = [
+//     new webpack.DefinePlugin({
+//       'process.env': {
+//         NODE_ENV: '"production"'
+//       }
+//     })
+//   ]
+// }

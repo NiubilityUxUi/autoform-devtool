@@ -7,7 +7,6 @@ let instance = null;
 
 
 export default function (e, win) {
-    console.log(e)
     if (e.type === 'init') {
         if (instance) {
             instance.$destroy();

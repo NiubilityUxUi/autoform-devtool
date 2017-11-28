@@ -1,7 +1,6 @@
+
+
 import initJsonEditor from './jsonEditorInit';
-
-
-
 chrome.devtools.panels.create(
   'AutoForm',
   'icons/128.png',
