@@ -7,7 +7,8 @@
     "dev": "webpack --watch --hide-modules ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf shells/dist && NODE_ENV=production webpack --progress --hide-modules",
-    "zip": " cd shells && zip -r -FS ../dist/chrome.zip .  -x *src/*   -x *src/**/* -x *webpack.config.js"
+    "zip": " cd shells && zip -r -FS ../dist/chrome.zip .  -x *src/*   -x *src/**/* -x *webpack.config.js",
+    "cp":"cp -R ./shells/ ./dist/pack && rm -rf ./dist/pack/src"
   },
   "author": "charlielau",
   "license": "ISC",

@@ -9,18 +9,7 @@ import JSONEditor from "jsoneditor";
 
 import "jsoneditor/dist/jsoneditor.css";
 
-let options = {
-  mode: "code",
-  modes: ["code", "form", "text", "tree", "view"], // allowed modes,
-  search: false,
-  onChange: () => {
-    this.vJson = this.editor.get();
-    this.$emit("upVal", this.vJson);
-  },
-  onError: e => {
-    console.log(e);
-  }
-};
+
 
 export default {
   name: "editor",
@@ -56,6 +45,19 @@ export default {
       if (!container) {
         return;
       }
+    let options = {
+        mode: "code",
+        modes: ["code", "form", "text", "tree", "view"], // allowed modes,
+        search: false,
+        onChange: () => {
+          this.vJson = this.editor.get();
+          this.$emit("upVal", this.vJson);
+        },
+        onError: e => {
+          console.log(e);
+        }
+      };
+
       this.editor = new JSONEditor(container, options, this.jsonData);
     }
   },
