@@ -40,6 +40,9 @@ export default function (e, win) {
             methods: {
                 updateModel(data) {
                     this.$refs.editorRef.updateModel(data);
+                },
+                updateFields(data){
+                    this.$refs.editorRef.updateFields(data);
                 }
             },
             component: {
@@ -49,5 +52,7 @@ export default function (e, win) {
 
     } else if (e.type === 'autoform_update_model') {
         instance.updateModel(e.data.model);
+    } else if (e.type === 'autoform_update_fields') {
+        instance.updateFields(e.data.fields);
     }
 }

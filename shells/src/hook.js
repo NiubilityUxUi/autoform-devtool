@@ -1,5 +1,5 @@
 window.addEventListener('message', e => {
-  if (e.source === window && (e.data.type === 'init' || e.data.type === 'autoform_update_model')) {
+  if (e.source === window && (['init', 'autoform_update_model', 'autoform_update_fields'].indexOf(e.data.type) >= 0)) {
     chrome.runtime.sendMessage(e.data)
   }
 });

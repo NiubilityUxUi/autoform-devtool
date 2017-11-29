@@ -9,8 +9,6 @@ import JSONEditor from "jsoneditor";
 
 import "jsoneditor/dist/jsoneditor.css";
 
-
-
 export default {
   name: "editor",
   props: {
@@ -29,11 +27,20 @@ export default {
 
   methods: {
     updateModel(data) {
-      if (this.jsonData && this.jsonData.model) {
+      if (this.vJson && this.vJson.model) {
         clearTimeout(this.updateTimer);
-        this.jsonData.model = data;
+        this.vJson.model = data;
         this.updateTimer = setTimeout(() => {
-          this.__updateJsonContainer(this.jsonData);
+          this.__updateJsonContainer(this.vJson);
+        }, 200);
+      }
+    },
+    updateFields(data) {
+      if (this.vJson && this.vJson.fields) {
+        clearTimeout(this.updateFieldsTimer);
+        this.vJson.fields = data;
+        this.updateFieldsTimer = setTimeout(() => {
+          this.__updateJsonContainer(this.vJson);
         }, 200);
       }
     },
@@ -45,7 +52,7 @@ export default {
       if (!container) {
         return;
       }
-    let options = {
+      let options = {
         mode: "code",
         modes: ["code", "form", "text", "tree", "view"], // allowed modes,
         search: false,
